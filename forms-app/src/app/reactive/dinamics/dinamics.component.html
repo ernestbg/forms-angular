@@ -1,0 +1,60 @@
+<h2>Reactive: <small>dinamics</small></h2>
+
+<hr>
+
+<div class="row w-50">
+    <div class="col">
+        <form  [formGroup]="myForm" (ngSubmit)="save()" autocomplete="off">
+            <div class="mb-3 row">
+
+                <div class="col-sm-4 w-100">
+                    <input type="text" class="form-control" formControlName="name"  placeholder="Name">
+                    <span class="form-text text-danger" *ngIf="fieldIsValid('name')"
+                       >*This field is
+                        required</span>
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <div class="col-sm-4 w-100">
+                    <div class="input-group">
+                        <input type="text" class="form-control" [formControl]="newFavourite" (keyup.enter)="addFavourite()" placeholder="Add favorite">
+                        <button type="button" class="btn btn-outline-primary" (click)="addFavourite()">Add</button>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="mb-3 row">
+                <label class="col-sm-3 col-form-label"><b>Favourites</b></label>
+
+                <div class="col-sm-4 w-100" formArrayName="favourites">
+                    <div class="input-group mb-2" *ngFor="let favourite of favouritesArray.controls; let i = index" >
+                        <input class="form-control" [formControlName]="i">
+                        <button type="button" class="btn btn-outline-danger" (click)="delete(i)">Delete</button>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+            <div class="mb-3 row">
+                <div class="col">
+                    <button type="submit" class="btn btn-primary float-end">
+                        Save
+                    </button>
+                </div>
+            </div>
+        </form>
+
+
+         <span>Valid</span>
+        <pre>{{myForm.valid | json}}</pre> 
+        <span>Value</span>
+        <pre>{{myForm.value | json}}</pre> 
+        <span>Add game</span>
+        <pre>{{newFavourite.valid | json}}</pre>  
+        <pre>{{newFavourite.value | json}}</pre> 
+    </div>
+</div>

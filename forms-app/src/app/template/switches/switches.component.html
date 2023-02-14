@@ -1,0 +1,77 @@
+<h2>Template: <small>switches</small></h2>
+<hr>
+<form #myForm="ngForm">
+
+    <div class="row mb-3">
+
+        <label class="col-sm-3 col-form-label"><b>Gender</b></label>
+
+        <div class="col-sm-9">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="genderRadio" value="M" [(ngModel)]="person.gender" id="maleRadio" required>
+                <label class="form-check-label" for="maleRadio" >
+                    Male
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="genderRadio" value="F" [(ngModel)]="person.gender" id="femaleRadio" required>
+                <label class="form-check-label" for="femaleRadio" >
+                    Female
+                </label>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="row mb-3">
+
+        <label class="col-sm-3 col-form-label"><b>Notifications</b></label>
+        <div class="col-sm-9">
+            <div class="form-check form-switch mt-2">
+                <input type="checkbox" class="form-check-input" [(ngModel)]="person.notifications" name="notifications" id="customSwitch1">
+                <label class="form-check-label" for="customSwitch1">Subscribe to our newsletter?</label>
+              </div>
+              
+        </div>
+
+    </div>
+
+
+    <div class="row mb-3">
+
+        <label class="col-sm-3 col-form-label"></label>
+        <div class="col-sm-9">
+
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" [(ngModel)]="termsConditions" name="terms" id="customCheck1" required>
+                <label class="form-check-label" for="customCheck1">Terms and conditions</label>
+              </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <button class="btn btn-primary float-end" [disabled]="myForm.invalid">Save</button>
+        </div>
+    </div>
+    
+
+
+</form>
+
+
+<h4>Value</h4>
+<pre>{{myForm.value | json}}</pre>
+<br>
+<h4>valid</h4>
+<pre>{{myForm.valid | json}}</pre>
+<br>
+<h4>person</h4>
+<pre>{{person | json}}</pre>
+<br>
+<h4>terms</h4>
+<pre>{{myForm?.controls?.terms?.errors | json}}</pre>
+<br>
+<h4>conditions</h4>
+<pre></pre>

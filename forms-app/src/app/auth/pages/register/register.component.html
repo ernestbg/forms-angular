@@ -1,0 +1,66 @@
+<h2>Reactive validations</h2>
+
+<hr>
+
+<div class="row">
+    <div class="col">
+        <form [formGroup]="myForm" (ngSubmit)="submitForm()">
+            <div class="row mb-4">
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" formControlName="name"  placeholder="Name">
+                    <span class="text-danger" *ngIf="validField('name')" >not valid format name and surname </span>
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col-sm-9">
+                    <input type="email" class="form-control" formControlName="email"  placeholder="email">
+                    <span class="text-danger" *ngIf="validField('email')">{{emailErrorMessage}} </span>
+                    
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" formControlName="userName" placeholder="Username">
+                    <span class="text-danger" *ngIf="validField('userName')">this username is already in use </span>
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col-sm-9">
+                    <input type="password" class="form-control" formControlName="password" placeholder="Password">
+                    <span class="text-danger" *ngIf="validField('password')">must be at least 6 characters </span>
+                   
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col-sm-9">
+                    <input type="password" class="form-control" formControlName="repeatPassword" placeholder="Repeat password" autocomplete="off">
+                    <span class="text-danger" *ngIf="validField('repeatPassword')">Password not the same </span>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <button type="submit" class="btn btn-primary float-end" [disabled]="myForm.pending">Create</button>
+                </div>
+            </div>
+            
+        </form>
+    </div>
+</div>
+
+<span>Form valid</span>
+<pre>{{myForm.valid}}</pre>
+<span>Form errors</span>
+<pre>{{myForm.errors | json}}</pre>
+<span>Form status</span>
+<pre>{{myForm.status | json}}</pre>
+<span>Form pending</span>
+<pre>{{myForm.pending | json}}</pre>
+<span>Email</span>
+<pre>{{ myForm.controls.email.errors | json }}</pre>
+<span>Name</span>
+<pre>{{myForm.controls.name.errors | json }}</pre>
+<span>Username</span>
+<pre>{{myForm.controls.userName.errors | json }}</pre>
+<span>Password</span>
+<pre>{{myForm.controls.password.errors | json }}</pre>
